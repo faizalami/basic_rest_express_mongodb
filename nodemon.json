@@ -1,0 +1,8 @@
+{
+  "restartable":"rs",
+  "watch":[
+    "public", "routes", "models"
+  ],
+  "verbose": true,
+  "ext": "js"
+}

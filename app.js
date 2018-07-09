@@ -1,0 +1,37 @@
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+
+var indexRouter = require('./routes/index');
+var itemsRouter = require('./routes/items');
+// var usersRouter = require('./routes/users');
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/shop');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log('connected');
+});
+mongoose.Promise = global.Promise;
+
+var app = express();
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+app.use('/items', itemsRouter);
+// app.use('/users', usersRouter);
+
+module.exports = app;
+
+var PORT = 8080;
+app.listen(PORT, function() {
+    console.log('Running on port : '+PORT);
+})
