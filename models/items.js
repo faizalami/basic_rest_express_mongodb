@@ -14,7 +14,7 @@ const itemsSchema = new Schema({
         type: Number,
         required: [true, 'Price must be filled !']
     },
-    photo: String
+    description: String
 });
 
 const Item  = mongoose.model('Item', itemsSchema);
