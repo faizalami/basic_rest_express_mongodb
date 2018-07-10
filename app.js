@@ -6,7 +6,6 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var itemsRouter = require('./routes/items');
-// var usersRouter = require('./routes/users');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/shop');
@@ -30,7 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/items', itemsRouter);
-// app.use('/users', usersRouter);
 
 module.exports = app;
 
